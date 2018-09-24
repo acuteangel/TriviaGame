@@ -18,6 +18,7 @@ $(document).ready(function(){
     var timeInterval;
     var correct = 0;
     var round = 0;
+    var clickCount = 0;
 
     function timer(){
         $("#timer").text(time+" seconds remaining")
@@ -36,12 +37,13 @@ $(document).ready(function(){
     }
 
     function displayQuestion(){
+        clickCount = 0;
         round++;
         time = 10;
         timer();
         $("#choice-container").show();
         $("#results").hide();
-        questionType = Math.floor(Math.random()*1);
+        questionType = Math.floor(Math.random()*5);
         bandIndex = Math.floor(Math.random()*5);
         band = bands[bandIndex];
         whoIndex = bandIndex*5 + Math.floor(Math.random()*5);
@@ -52,43 +54,144 @@ $(document).ready(function(){
             where = "DJ"
         }
         if (questionType == 0) {
-            $("#question").text("Which of these is a band member of "+ bands[bandIndex] + "?");            
-            var wrong1 = Math.floor(Math.random()*20);
-            if (wrong1 >= bandIndex*5){
-                wrong1 += 5;
+            $("#question").text("Which of these is a band member of "+ band + "?");
+            answer = who;
+            var wrong1Index = Math.floor(Math.random()*20);
+            if (wrong1Index >= bandIndex*5){
+                wrong1Index += 5;
             }
-            var wrong2 = wrong1;
-            while (wrong2 == wrong1){
-                wrong2 = Math.floor(Math.random()*20);
-                if (wrong2 >= bandIndex*5){
-                    wrong2 += 5;
+            var wrong2Index = wrong1Index;
+            while (wrong2Index == wrong1Index){
+                wrong2Index = Math.floor(Math.random()*20);
+                if (wrong2Index >= bandIndex*5){
+                    wrong2Index += 5;
                 }
             }
-            var wrong3 = wrong1;
-            while (wrong3 == wrong1 || wrong3 == wrong2){
-                wrong3 = Math.floor(Math.random()*20);
-                if (wrong3 >= bandIndex*5){
-                    wrong3 += 5;
+            var wrong3Index = wrong1Index;
+            while (wrong3Index == wrong1Index || wrong3Index == wrong2Index){
+                wrong3Index = Math.floor(Math.random()*20);
+                if (wrong3Index >= bandIndex*5){
+                    wrong3Index += 5;
+                }
+            }
+           var wrong1 = members[wrong1Index];
+           var wrong2 = members[wrong2Index];
+           var wrong3 = members[wrong3Index];
+        } else if (questionType == 1) {
+            $("#question").text("What position does "+who+" fill?")
+            answer = where;
+            var wrong1Index = Math.floor(Math.random()*4);
+            if (wrong1Index >= whereIndex){
+                wrong1Index++;
+            }
+            var wrong2Index = wrong1Index;
+            while (wrong2Index == wrong1Index){
+                wrong2Index = Math.floor(Math.random()*4);
+                if (wrong2Index >= whereIndex){
+                    wrong2Index++;
+                }
+            }
+            var wrong3Index = wrong1Index;
+            while (wrong3Index == wrong1Index || wrong3Index == wrong2Index){
+                wrong3Index = Math.floor(Math.random()*4);
+                if (wrong3Index >= whereIndex){
+                    wrong3Index++;
                 }
             }            
-            var choiceIndex = Math.floor(Math.random()*4);
-            $("#"+choices[choiceIndex]).text(who);
-            $("#"+choices[choiceIndex]).on("click", function(){correctAnswer()});
-            $("#"+choices[(choiceIndex+1)%4]).text(members[wrong1]);
-            $("#"+choices[(choiceIndex+1)%4]).on("click", function(){wrongAnswer()});
-            $("#"+choices[(choiceIndex+2)%4]).text(members[wrong2]);
-            $("#"+choices[(choiceIndex+2)%4]).on("click", function(){wrongAnswer()});
-            $("#"+choices[(choiceIndex+3)%4]).text(members[wrong3]);
-            $("#"+choices[(choiceIndex+3)%4]).on("click", function(){wrongAnswer()});
-        } else if (questionType == 1) {
-
+           var wrong1 = positions[wrong1Index];
+           var wrong2 = positions[wrong2Index];
+           var wrong3 = positions[wrong3Index];
+        } else if (questionType == 2) {
+            $("#question").text("Who is the "+where+" for "+band+"?")
+            answer = who;
+            var wrong1Index = Math.floor(Math.random()*24);
+            if (wrong1Index == whoIndex){
+                wrong1Index++;
+            }
+            var wrong2Index = wrong1Index;
+            while (wrong2Index == wrong1Index){
+                wrong2Index = Math.floor(Math.random()*24);
+                if (wrong2Index == whoIndex){
+                    wrong2Index++;
+                }
+            }
+            var wrong3Index = wrong1Index;
+            while (wrong3Index == wrong1Index || wrong3Index == wrong2Index){
+                wrong3Index = Math.floor(Math.random()*24);
+                if (wrong3Index >= whoIndex){
+                    wrong3Index++;
+                }
+            }            
+           var wrong1 = members[wrong1Index];
+           var wrong2 = members[wrong2Index];
+           var wrong3 = members[wrong3Index];
+        } else if (questionType == 3) {
+            $("#question").text("What band is "+who+" a member of?")
+            answer = band;
+            var wrong1Index = Math.floor(Math.random()*4);
+            if (wrong1Index >= bandIndex){
+                wrong1Index++;
+            }
+            var wrong2Index = wrong1Index;
+            while (wrong2Index == wrong1Index){
+                wrong2Index = Math.floor(Math.random()*4);
+                if (wrong2Index >= bandIndex){
+                    wrong2Index++;
+                }
+            }
+            var wrong3Index = wrong1Index;
+            while (wrong3Index == wrong1Index || wrong3Index == wrong2Index){
+                wrong3Index = Math.floor(Math.random()*4);
+                if (wrong3Index >= bandIndex){
+                    wrong3Index++;
+                }
+            }            
+           var wrong1 = bands[wrong1Index];
+           var wrong2 = bands[wrong2Index];
+           var wrong3 = bands[wrong3Index];
+        } else if (questionType == 4) {
+            $("#question").text("Which of these is a "+where+"?")
+            answer = who;
+            var wrong1Index = Math.floor(Math.random()*20);
+            if (wrong1Index == whereIndex || wrong1Index == (whereIndex+5)%25 || wrong1Index == (whereIndex+10)%25 || wrong1Index == (whereIndex+15)%25 || wrong1Index == (whereIndex+20)%25 ){
+                wrong1Index++;
+            }
+            var wrong2Index = wrong1Index;
+            while (wrong2Index == wrong1Index){
+                wrong2Index = Math.floor(Math.random()*20);
+                if (wrong2Index == whereIndex || wrong1Index == (whereIndex+5)%25 || wrong1Index == (whereIndex+10)%25 || wrong1Index == (whereIndex+15)%25 || wrong1Index == (whereIndex+20)%25 ){
+                    wrong2Index++;
+                }
+            }
+            var wrong3Index = wrong1Index;
+            while (wrong2Index == wrong3Index || wrong1Index == wrong3Index){
+                wrong3Index = Math.floor(Math.random()*20);
+                if (wrong1Index == whereIndex || wrong1Index == (whereIndex+5)%25 || wrong1Index == (whereIndex+10)%25 || wrong1Index == (whereIndex+15)%25 || wrong1Index == (whereIndex+20)%25 ){
+                    wrong3Index++;
+                }
+            }            
+           var wrong1 = members[wrong1Index];
+           var wrong2 = members[wrong2Index];
+           var wrong3 = members[wrong3Index];
         }
+        var choiceIndex = Math.floor(Math.random()*4);
+        $("#"+choices[choiceIndex]).text(answer);
+        $("#"+choices[choiceIndex]).on("click", function(){correctAnswer()});
+        $("#"+choices[(choiceIndex+1)%4]).text(wrong1);
+        $("#"+choices[(choiceIndex+1)%4]).on("click", function(){wrongAnswer()});
+        $("#"+choices[(choiceIndex+2)%4]).text(wrong2);
+        $("#"+choices[(choiceIndex+2)%4]).on("click", function(){wrongAnswer()});
+        $("#"+choices[(choiceIndex+3)%4]).text(wrong3);
+        $("#"+choices[(choiceIndex+3)%4]).on("click", function(){wrongAnswer()});
     }
 
-    function correctAnswer(){
-        correct++;
+    function correctAnswer(){        
         $("#timer").text("You are correct!");
-        clearInterval(timeInterval);
+        clickCount++; //used to prevent multiple clicks adding to the total amount
+        if (clickCount == 1) {
+            correct++;
+        }
+        clearInterval(timeInterval);               
         roundEnd();
     };
     function wrongAnswer(){
@@ -98,6 +201,8 @@ $(document).ready(function(){
     };
     function roundEnd(){
         $("#choice-container").hide();
+        $("#band").attr("src", "assets/images/bands-"+bandIndex+".png")
+        $("#member").attr("src", "assets/images/member"+whoIndex+".png")
         $("#results").show();
         if (round < 10) {
         time = 5;
@@ -113,16 +218,17 @@ $(document).ready(function(){
                 displayQuestion();
             }
         }, 1000)} else {
-            $("#question").text("You got "+correct+" out of 10 correct!")
+            $("#timer").text($("#timer").text()+" You got "+correct+"/10 correct!")
+            $("#question").text("Click here to start over!")
+            questionType = -1;
+            correct = 0;
         }
-        if (questionType == 0){
-            $("#results-text").text(who+" is the "+where+" for "+band+"!")
-        }
+        $("#results-text").text(who+" is the "+where+" for "+band+"!")        
     }
 
     $("#question").on("click", function(){
         if (questionType == -1){
             displayQuestion();
-        }
+        } 
     })
 })

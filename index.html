@@ -2,8 +2,10 @@
 <html lang="en">
     <head>
         <title>BanG Dream! Trivia Game</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="assets/css/reset.css">
         <link rel="stylesheet" href="assets/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
 
@@ -14,15 +16,15 @@
             <div id="question">Click here to begin</div>
             <div id="display">
                 <div id="choice-container" hidden>
-                    <div id="choice-a" class="choices"></div>
-                    <div id="choice-b" class="choices"></div>
-                    <div id="choice-c" class="choices"></div>
-                    <div id="choice-d" class="choices"></div>
+                    <button id="choice-a" class="choices"></button>
+                    <button id="choice-b" class="choices"></button>
+                    <button id="choice-c" class="choices"></button>
+                    <button id="choice-d" class="choices"></button>
                 </div>
-                <div id="results">
-                    <div id="results-text">asdfasdf sad fis the thasdf for asdfas</div>
-                    <img src="assets/images/bands-0.png">
-                    <img src="assets/images/member0.png">
+                <div id="results" >
+                    <div id="results-text"></div>
+                    <img id="band" src="assets/images/bands-0.png">
+                    <img id="member" src="assets/images/member0.png">
                 </div>
             </div>
         </div>

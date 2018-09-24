@@ -5,9 +5,11 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    font-size: 4vw;
-    text-align: center;
-    justify-content: center;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 7vh;
+    text-align: center;    
+    color: white;
+    text-shadow: .1vh .1vh 6vh #ff3b72;    
 }
 
 .wrapper {
@@ -30,10 +32,15 @@ header{
     line-height: 10vh;
 }
 
-#display {
+#display, #results {
     height: 60vh;    
     line-height: 10vh;
     margin: 0vh;
+}
+
+#results-text{
+    line-height: 5vh;
+    font-size: 5vh;
 }
 
 #choice-container {
@@ -42,16 +49,18 @@ header{
     grid-template-rows: 1fr 1fr;
 }
 
-.choices {
-    height: 30h;
-    max-width: 40vw;    
-    line-height: 30vh;
+img {
+    width: auto;
 }
 
-.member {
-font-family: softsoul,impact,sans-serif;
-    transform: rotate(-6deg);
-    margin-top: -10px;
-    font-style: italic;
-    text-shadow: 2px 2px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+.choices {
+    height: 30vh;
+    max-width: 40vw;    
+    line-height: 30vh;
+    background-color: rgba(255, 255, 255, 0%);
+    border: 0px;
+    color: white;
+    text-shadow: .1vh .1vh 6vh #ff3b72;    
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 7vh;
 }
