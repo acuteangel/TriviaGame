@@ -24,17 +24,17 @@ body {
 
 header{
     height: 10vh;    
-    line-height: 10vh;    
+    line-height: 8vh;    
 }
 
 #question, #timer{
-    height: 10vh;    
-    line-height: 10vh;
+    height: auto;    
+    line-height: 8vh;
 }
 
 #display, #results {
-    height: 60vh;    
-    line-height: 10vh;
+    height: 10vh;    
+    line-height: 8vh;
     margin: 0vh;
 }
 
@@ -49,18 +49,76 @@ header{
     grid-template-rows: 1fr 1fr;
 }
 
-img {
-    width: auto;
+img {    
+    height: auto;
 }
 
 .choices {
-    height: 30vh;
-    max-width: 40vw;    
-    line-height: 30vh;
+    height: 25vh;
+    width: 40vw;    
+    line-height: 7vh;
     background-color: rgba(255, 255, 255, 0%);
     border: 0px;
     color: white;
     text-shadow: .1vh .1vh 6vh #ff3b72;    
     font-family: 'Luckiest Guy', cursive;
     font-size: 7vh;
+}
+@media screen and (max-width: 1140px){
+    #member {
+        height: 40vh;
+    }
+    #band {
+        height: 20vh;
+    }
+}
+@media screen and (max-width: 1366px) and (orientation:portrait){
+    header {
+        font-size: 6vh;
+        line-height: 6vh;        
+        height: 7vh;
+    }
+    #member {
+        height: 35vh;
+    }
+    #band {
+        height: 15vh;
+    }
+    #timer, #question {
+        font-size: 5vh;
+        line-height: 5vh;        
+        height: auto;        
+    }
+    #choice-container{
+        grid-template-columns: 1fr;
+        width: 77vw;
+        height: 64vh;
+        align-items: center;
+    }
+    .choices {
+        width: 77vw;
+        height: 16vh;
+        line-height: 5vh;
+        font-size: 5vh;
+        text-align: center;
+        position: relative;
+    }
+}
+
+@media screen and (max-width: 376px) and (orientation:portrait){
+    header {
+        font-size: 4vh;
+        line-height: 4vh;        
+        height: auto;
+    }
+    #member {
+        height: 30vh;
+    }
+    #band {
+        height: 10vh;
+    }    
+    #timer, #question {
+        font-size: 3.5vh;
+        line-height: 3.5vh;        
+    }
 }

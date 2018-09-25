@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var bands = ["Poppin' Party", "Afterglow", "Hello, Happy World!", "Pastel✽Palettes", "Roselia"]
+    var bands = ["Poppin' Party", "Afterglow", "Hello, Happy World!", "Pastel ✽ Palettes", "Roselia"]
     var members = [ "Kasumi Toyama", "Tae Hanazono", "Rimi Ushigome", "Saaya Yamabuki", "Arisa Ichigaya",
                     "Ran Mitake", "Moca Aoba", "Himari Uehara", "Tomoe Udagawa", "Tsugumi Hazawa",
                     "Kokoro Tsurumaki", "Kaoru Seta", "Kagumi Kitazawa", "Kanon Matsubara", "Misaki Okusawa",
