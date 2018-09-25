@@ -152,21 +152,21 @@ $(document).ready(function(){
         } else if (questionType == 4) {
             $("#question").text("Which of these is a "+where+"?")
             answer = who;
-            var wrong1Index = Math.floor(Math.random()*20);
-            if (wrong1Index == whereIndex || wrong1Index == (whereIndex+5)%25 || wrong1Index == (whereIndex+10)%25 || wrong1Index == (whereIndex+15)%25 || wrong1Index == (whereIndex+20)%25 ){
+            var wrong1Index = Math.floor(Math.random()*25);
+            if (wrong1Index == whoIndex || wrong1Index == (whoIndex+5)%25 || wrong1Index == (whoIndex+10)%25 || wrong1Index == (whoIndex+15)%25 || wrong1Index == (whoIndex+20)%25 ){
                 wrong1Index++;
             }
             var wrong2Index = wrong1Index;
             while (wrong2Index == wrong1Index){
-                wrong2Index = Math.floor(Math.random()*20);
-                if (wrong2Index == whereIndex || wrong1Index == (whereIndex+5)%25 || wrong1Index == (whereIndex+10)%25 || wrong1Index == (whereIndex+15)%25 || wrong1Index == (whereIndex+20)%25 ){
+                wrong2Index = Math.floor(Math.random()*25);
+                if (wrong2Index == whoIndex || wrong2Index == (whoIndex+5)%25 || wrong2Index == (whoIndex+10)%25 || wrong2Index == (whoIndex+15)%25 || wrong2Index == (whoIndex+20)%25 ){
                     wrong2Index++;
                 }
             }
-            var wrong3Index = wrong1Index;
+            var wrong3Index = wrong2Index;
             while (wrong2Index == wrong3Index || wrong1Index == wrong3Index){
-                wrong3Index = Math.floor(Math.random()*20);
-                if (wrong1Index == whereIndex || wrong1Index == (whereIndex+5)%25 || wrong1Index == (whereIndex+10)%25 || wrong1Index == (whereIndex+15)%25 || wrong1Index == (whereIndex+20)%25 ){
+                wrong3Index = Math.floor(Math.random()*25);
+                if (wrong3Index == whoIndex || wrong3Index == (whoIndex+5)%25 || wrong3Index == (whoIndex+10)%25 || wrong3Index == (whoIndex+15)%25 || wrong3Index == (whoIndex+20)%25 ){
                     wrong3Index++;
                 }
             }            
@@ -186,11 +186,12 @@ $(document).ready(function(){
     }
 
     function correctAnswer(){        
-        $("#timer").text("You are correct!");
-        clickCount++; //used to prevent multiple clicks adding to the total amount
-        if (clickCount == 1) {
+        $("#timer").text("You are correct!");        
+        if (clickCount == 0) {
             correct++;
-        }
+        }; 
+        console.log(correct);
+        clickCount++; //used to prevent multiple clicks adding to the total amount
         clearInterval(timeInterval);               
         roundEnd();
     };
@@ -221,13 +222,13 @@ $(document).ready(function(){
             $("#timer").text($("#timer").text()+" You got "+correct+"/10 correct!")
             $("#question").text("Click here to start over!")
             questionType = -1;
-            correct = 0;
         }
         $("#results-text").text(who+" is the "+where+" for "+band+"!")        
     }
 
     $("#question").on("click", function(){
-        if (questionType == -1){
+        if (questionType == -1){            
+            correct = 0;
             displayQuestion();
         } 
     })

@@ -74,51 +74,38 @@ img {
 }
 @media screen and (max-width: 1366px) and (orientation:portrait){
     header {
-        font-size: 6vh;
-        line-height: 6vh;        
-        height: 7vh;
+        font-size: 10vw;
+        line-height: 10vw;        
+        height: 21vw;
     }
     #member {
-        height: 35vh;
+        height: 55vw;
     }
     #band {
-        height: 15vh;
+        height: 25vw;
+    }
+    #results-text{
+        font-size: 7vw;
+        line-height: 7vw;
     }
     #timer, #question {
-        font-size: 5vh;
-        line-height: 5vh;        
-        height: auto;        
+        font-size: 8vw;
+        line-height: 8vw;        
+        height: auto;
+        margin-bottom: 1vw;
     }
     #choice-container{
         grid-template-columns: 1fr;
         width: 77vw;
-        height: 64vh;
+        height: 64vw;
         align-items: center;
     }
     .choices {
         width: 77vw;
-        height: 16vh;
-        line-height: 5vh;
-        font-size: 5vh;
+        height: 20vw;
+        line-height: 8vw;
+        font-size: 8vw;
         text-align: center;
         position: relative;
-    }
-}
-
-@media screen and (max-width: 376px) and (orientation:portrait){
-    header {
-        font-size: 4vh;
-        line-height: 4vh;        
-        height: auto;
-    }
-    #member {
-        height: 30vh;
-    }
-    #band {
-        height: 10vh;
-    }    
-    #timer, #question {
-        font-size: 3.5vh;
-        line-height: 3.5vh;        
     }
 }
