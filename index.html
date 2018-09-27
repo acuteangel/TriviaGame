@@ -10,12 +10,13 @@
     </head>
 
     <body>
+        <img id="sound" src = "assets/images/mute-512.png" data-mute="assets/images/mute-512.png" data-volume="assets/images/volume-512.png" data-state="mute">
         <div class = "wrapper">
             <header>BanG Dream! Trivia</header>
             <div id="timer">You will have 10 seconds per question.</div>
             <div id="question">Click here to begin</div>
             <div id="display">
-                <div id="choice-container" hidden>
+                <div id="choice-container">
                     <button id="choice-a" class="choices"></button>
                     <button id="choice-b" class="choices"></button>
                     <button id="choice-c" class="choices"></button>
@@ -29,7 +30,9 @@
             </div>
         </div>
 
-        <audio id="game-music"></audio>        
+        <audio id="game-music">
+            <source src="assets/music/secret-base.mp3" loop>
+        </audio>        
                     
         <script type="text/javascript" src="assets/javascript/app.js"></script>
     </body>

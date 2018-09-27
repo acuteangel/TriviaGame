@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    //arrays with the different bands, their corresponding members, and the corresponding positions
     var bands = ["Poppin' Party", "Afterglow", "Hello, Happy World!", "Pastel ✽ Palettes", "Roselia"]
     var members = [ "Kasumi Toyama", "Tae Hanazono", "Rimi Ushigome", "Saaya Yamabuki", "Arisa Ichigaya",
                     "Ran Mitake", "Moca Aoba", "Himari Uehara", "Tomoe Udagawa", "Tsugumi Hazawa",
@@ -6,7 +7,9 @@ $(document).ready(function(){
                     "Aya Maruyama", "Hina Hikawa", "Chisato Shirasagi", "Maya Yamato", "Eve Wakamiya",
                     "Yukina Minato", "Sayo Hikawa", "Lisa Imai", "Ako Udagawa", "Rinko Shirokane"]
     var positions = ["vocalist", "lead guitarist", "bassist", "drummer", "keyboardist"]
+    //array corresponding to the 4 buttons
     var choices = ["choice-a", "choice-b", "choice-c", "choice-d"]
+    //array different variables for keeping track of questions, time, rounds, and corect answers
     var time;
     var questionType = -1;
     var bandIndex;
@@ -20,6 +23,31 @@ $(document).ready(function(){
     var round = 0;
     var clickCount = 0;
 
+    //event trigger to start/restart game
+    $("#question").on("click", function(){
+        if (questionType == -1){            
+            correct = 0;
+            round = 0;
+            displayQuestion();
+            $("#game-music").get(0).play();
+            $("#game-music").get(0).volumE = 0.2;
+        } 
+    })
+
+    //toggle sound
+    $("#sound").on("click", function(){
+        if ($("#sound").attr("data-state")=="mute"){
+            $("#sound").attr("src", $("#sound").attr("data-volume"))
+            $("#game-music").get(0).volume = 0;
+            $("#sound").attr("data-state","volume")
+        }else {
+            $("#sound").attr("src", $("#sound").attr("data-mute"))
+            $("#game-music").get(0).volume = 0.2;
+            $("#sound").attr("data-state","mute")
+        }
+    })
+
+    //function to keep track of the time during the question
     function timer(){
         $("#timer").text(time+" seconds remaining")
         timeInterval = setInterval(function(){
@@ -36,6 +64,8 @@ $(document).ready(function(){
         }, 1000)
     }
 
+    //function to display the question. Chooses a random question format and member, with their corresponding band and position
+    //each question is filled in using the different word banks
     function displayQuestion(){
         clickCount = 0;
         round++;
@@ -174,6 +204,8 @@ $(document).ready(function(){
            var wrong2 = members[wrong2Index];
            var wrong3 = members[wrong3Index];
         }
+
+        //randomly assigns the answer to one of the 4 buttons and assigns events for each button
         var choiceIndex = Math.floor(Math.random()*4);
         $("#"+choices[choiceIndex]).text(answer);
         $("#"+choices[choiceIndex]).on("click", function(){correctAnswer()});
@@ -185,21 +217,27 @@ $(document).ready(function(){
         $("#"+choices[(choiceIndex+3)%4]).on("click", function(){wrongAnswer()});
     }
 
-    function correctAnswer(){        
+    //function for correct answer click
+    function correctAnswer(){
         $("#timer").text("You are correct!");        
         if (clickCount == 0) {
             correct++;
         }; 
-        console.log(correct);
         clickCount++; //used to prevent multiple clicks adding to the total amount
         clearInterval(timeInterval);               
         roundEnd();
+        $("button").remove(); //used to remove previous events from existing buttons
+        $("#choice-container").html('<button id="choice-a" class="choices"></button><button id="choice-b" class="choices"></button><button id="choice-c" class="choices"></button><button id="choice-d" class="choices"></button>')
     };
+
+    //function for wrong answer click
     function wrongAnswer(){
         $("#timer").text("You are wrong!");
         clearInterval(timeInterval);
         roundEnd();
     };
+
+    //function to display the results after each question. after 10 rounds displays game end screen
     function roundEnd(){
         $("#choice-container").hide();
         $("#band").attr("src", "assets/images/bands-"+bandIndex+".png")
@@ -221,15 +259,10 @@ $(document).ready(function(){
         }, 1000)} else {
             $("#timer").text($("#timer").text()+" You got "+correct+"/10 correct!")
             $("#question").text("Click here to start over!")
-            questionType = -1;
+            questionType = -1;            
         }
         $("#results-text").text(who+" is the "+where+" for "+band+"!")        
     }
 
-    $("#question").on("click", function(){
-        if (questionType == -1){            
-            correct = 0;
-            displayQuestion();
-        } 
-    })
+    
 })
